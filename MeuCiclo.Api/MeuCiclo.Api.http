@@ -1,0 +1,6 @@
+@MeuCiclo.Api_HostAddress = http://localhost:5047
+
+GET {{MeuCiclo.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

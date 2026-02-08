@@ -1,24 +1,22 @@
 ﻿using MediatR;
-using MeuCiclo.Application.Commands;
-using MeuCiclo.Domain;
+using MeuCiclo.Domain.Entities;
 using MeuCiclo.Domain.Interfaces;
 
-namespace MeuCiclo.Application.Handler
+namespace MeuCiclo.Application.Commands;
+
+public class CreateCicloCommandHandler : IRequestHandler<CreateCicloCommand, Guid>
 {
-    public class CreateCicloCommandHandler : IRequestHandler<CreateCicloCommand, Guid>
+    private readonly ICicloRepository _repo;
+
+    public CreateCicloCommandHandler(ICicloRepository repo)
     {
-        private readonly ICicloRepository _repository;
+        _repo = repo;
+    }
 
-        public CreateCicloCommandHandler(ICicloRepository repository)
-        {
-            _repository = repository;
-        }
-
-        public async Task<Guid> Handle(CreateCicloCommand request, CancellationToken cancellationToken)
-        {
-            var ciclo = new Ciclo(request.Data, request.Fluxo);
-            await _repository.AddAsync(ciclo);
-            return ciclo.Id;
-        }
+    public async Task<Guid> Handle(CreateCicloCommand request, CancellationToken cancellationToken)
+    {
+        var ciclo = new Ciclo(request.Data, request.Fluxo);
+        await _repo.AddAsync(ciclo);
+        return ciclo.Id;
     }
 }

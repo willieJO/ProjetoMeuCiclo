@@ -1,4 +1,5 @@
 ﻿using MeuCiclo.Domain;
+using MeuCiclo.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeuCiclo.Infrastructure.Persistence

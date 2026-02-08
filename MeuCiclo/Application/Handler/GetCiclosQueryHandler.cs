@@ -1,20 +1,18 @@
 ﻿using MediatR;
-using MeuCiclo.Application.Queries;
-using MeuCiclo.Domain;
+using MeuCiclo.Domain.Entities;
 using MeuCiclo.Domain.Interfaces;
 
-namespace MeuCiclo.Application.Handler
+namespace MeuCiclo.Application.Queries;
+
+public class GetCiclosQueryHandler : IRequestHandler<GetCiclosQuery, IEnumerable<Ciclo>>
 {
-    public class GetCiclosQueryHandler : IRequestHandler<GetCiclosQuery, IEnumerable<Ciclo>>
+    private readonly ICicloRepository _repo;
+
+    public GetCiclosQueryHandler(ICicloRepository repo)
     {
-        private readonly ICicloRepository _repository;
-
-        public GetCiclosQueryHandler(ICicloRepository repository)
-        {
-            _repository = repository;
-        }
-
-        public async Task<IEnumerable<Ciclo>> Handle(GetCiclosQuery request, CancellationToken cancellationToken)
-            => await _repository.GetAllAsync();
+        _repo = repo;
     }
+
+    public async Task<IEnumerable<Ciclo>> Handle(GetCiclosQuery request, CancellationToken cancellationToken)
+        => await _repo.GetAllAsync();
 }

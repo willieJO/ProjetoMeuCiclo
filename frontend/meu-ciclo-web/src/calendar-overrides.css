@@ -1,0 +1,74 @@
+/* base do calendário */
+.react-calendar {
+  width: 100%;
+  border: none;
+  font-family: inherit;
+}
+
+.react-calendar__navigation button {
+  border-radius: 12px;
+}
+
+.react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+
+.react-calendar__tile {
+  border-radius: 12px;
+  position: relative;
+}
+
+/* hover do dia */
+.react-calendar__tile:enabled:hover {
+  background: rgba(244, 63, 94, 0.12);
+}
+
+/* dia selecionado */
+.react-calendar__tile--active,
+.react-calendar__tile--active:enabled:hover {
+  background: rgba(244, 63, 94, 0.2);
+}
+
+/* HOJE */
+.react-calendar__tile--now {
+  background: rgba(26, 128, 245, 0.228);
+}
+
+/* 🔴 marcação de menstruação: círculo vermelho */
+.mc-day-marked abbr {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 2px solid #ef4444; /* red-500 */
+  font-weight: 700;
+}
+.mc-day-marked abbr:hover {
+  background: rgba(239, 68, 68, 0.12); /* red-500 com opacidade */
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
